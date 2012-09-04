@@ -24,27 +24,11 @@
         </value>
       </nameValuePair>
     </configurationParameterSettings>
-    <typeSystemDescription>
-      <types>
-        <typeDescription>
-          <name>com.github.tteofili.btl.uima.annotator.NameAnnotation</name>
-          <description>annotation for a first name</description>
-          <supertypeName>uima.tcas.Annotation</supertypeName>
-        </typeDescription>
-        <typeDescription>
-          <name>org.apache.uima.TokenAnnotation</name>
-          <description></description>
-          <supertypeName>uima.tcas.Annotation</supertypeName>
-          <features>
-            <featureDescription>
-              <name>posTag</name>
-              <description>part of speech tag</description>
-              <rangeTypeName>uima.cas.String</rangeTypeName>
-            </featureDescription>
-          </features>
-        </typeDescription>
-      </types>
-    </typeSystemDescription>
+      <typeSystemDescription>
+          <imports>
+              <import name="btl_typesystem"/>
+          </imports>
+      </typeSystemDescription>
     <typePriorities/>
     <fsIndexCollection/>
     <capabilities>
