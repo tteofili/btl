@@ -12,21 +12,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>it.uniroma3.webpipe</groupId>
-      <artifactId>crawler</artifactId>
-      <version>1.6-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>it.uniroma3.webpipe</groupId>
-      <artifactId>wrapper</artifactId>
-      <version>1.6-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>it.uniroma3.webpipe</groupId>
-      <artifactId>webpipe-pilot</artifactId>
-      <version>1.5-SNAPSHOT</version>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.5</version>
