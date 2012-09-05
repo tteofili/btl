@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE navigation PUBLIC "-/UNIROMA3/Crawler Specification DTD 1.0//EN"
+        "classpath:/crawler-specification.dtd">
+<navigation>
+
+    <entrypoint type="Articoli Politica"
+                url="http://www.repubblica.it/politica/?ref=HRHM1-2"/>
+
+    <model name="rep_pol">
+
+        <pageclass type="1">
+
+            <classrequest type="1_2" expectedtypes="2">
+                <clickall xpath="//ul[@class='filterList'][1]/li[position()>1]/a"/>
+            </classrequest>
+
+        </pageclass>
+
+        <pageclass type="2">
+
+            <extractor>
+                <extraction-rule type="url"/>
+                <extraction-rule type="content"/>
+                <extraction-rule type="xpath" name="title" xpath="/html[contains(concat(' ', @class, ' '), '  ')]/body[contains(concat(' ', @class, ' '), ' detail ')]/div[@id='container']/div[contains(concat(' ', @class, ' '), ' page-body ')]/div[contains(concat(' ', @class, ' '), ' page-content ')]/div[contains(concat(' ', @class, ' '), ' body-text ')]/h1[contains(concat(' ', @class, ' '), '  ')]"/>
+                <extraction-rule type="xpath" name="summary" xpath="/html[contains(concat(' ', @class, ' '), '  ')]/body[contains(concat(' ', @class, ' '), ' detail ')]/div[@id='container']/div[contains(concat(' ', @class, ' '), ' page-body ')]/div[contains(concat(' ', @class, ' '), ' page-content ')]/div[contains(concat(' ', @class, ' '), ' body-text ')]/h3[contains(concat(' ', @class, ' '), '  ')]"/>
+                <extraction-rule type="xpath" name="text" xpath="id('container')/x:div[2]/x:div[2]/x:div[1]/text()"/>
+                <extraction-rule type="xpath" name="date" xpath="id('container')/x:div[2]/x:div[2]/x:p[1]/x:span"/>
+            </extractor>
+
+        </pageclass>
+
+    </model>
+
+</navigation>
