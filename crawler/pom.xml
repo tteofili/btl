@@ -9,22 +9,34 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.hama</groupId>
       <artifactId>hama-core</artifactId>
-      <version>0.6-SNAPSHOT</version>
+      <version>0.6.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-core</artifactId>
-      <version>4.0.0-ALPHA</version>
+      <version>4.0.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.lucene</groupId>
       <artifactId>lucene-analyzers-common</artifactId>
-      <version>4.0.0-ALPHA</version>
+      <version>4.0.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

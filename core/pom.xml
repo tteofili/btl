@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.github.tteofili.btl</groupId>
-  <artifactId>core</artifactId>
+  <artifactId>btl-core</artifactId>
   <version>0.1-SNAPSHOT</version>
 
   <properties>
