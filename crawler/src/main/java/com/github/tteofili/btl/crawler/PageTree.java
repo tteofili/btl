@@ -3,7 +3,7 @@ package com.github.tteofili.btl.crawler;
 import java.util.Collection;
 
 /**
- * Add javadoc here
+ * A tree of {@link Page}s
  */
 public interface PageTree {
 

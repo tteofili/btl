@@ -12,10 +12,5 @@ public interface Crawler {
 
     public Site getSite(URL url) throws CrawlingException;
 
-    public Site getSite(URL url, int depth) throws CrawlingException;
-
-    public Collection<Page> getChildren(Page page) throws CrawlingException;
-
-    public PageTree getDescendants(Page page, int depth) throws CrawlingException;
-
+    public Collection<Page> getLinkedPages(Page page) throws CrawlingException;
 }
