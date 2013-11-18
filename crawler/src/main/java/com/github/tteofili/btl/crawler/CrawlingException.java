@@ -10,4 +10,7 @@ public class CrawlingException extends Exception {
     super(msg);
   }
 
+  public CrawlingException(Exception e) {
+    super(e);
+  }
 }
