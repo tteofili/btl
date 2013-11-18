@@ -1,10 +1,5 @@
 package com.github.tteofili.btl.uima.annotator;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.CasAnnotator_ImplBase;
@@ -15,6 +10,11 @@ import org.apache.uima.cas.TypeSystem;
 import org.apache.uima.cas.text.AnnotationFS;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Annotates first names using a name dictionary and PoSs
@@ -42,11 +42,11 @@ public class NameAnnotator extends CasAnnotator_ImplBase {
     @Override
     public void process(CAS cas) throws AnalysisEngineProcessException {
         TypeSystem typeSystem = cas.getTypeSystem();
-        for (AnnotationFS annotation : cas.getAnnotationIndex(typeSystem.getType("org.apache.uima.TokenAnnotation"))) {
+        for (AnnotationFS annotation : cas.getAnnotationIndex(typeSystem.getType(AnnotationUtils.TOKEN_ANNOTATION))) {
             /* create a name annotation for each occurrence of a name in the dictionary */
             if (Collections.binarySearch(namesList, annotation.getCoveredText()) >= 0 && isNP(annotation)) {
                 AnnotationFS nameAnnotation = cas.createAnnotation(typeSystem.
-                        getType("com.github.tteofili.btl.uima.NameAnnotation"), annotation.getBegin(), annotation.getEnd());
+                        getType(AnnotationUtils.NAME_ANNOTATION), annotation.getBegin(), annotation.getEnd());
                 cas.addFsToIndexes(nameAnnotation);
             }
         }

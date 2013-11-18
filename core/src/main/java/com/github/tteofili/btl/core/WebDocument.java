@@ -1,12 +1,12 @@
 package com.github.tteofili.btl.core;
 
-import java.util.Collection;
+import java.util.SortedSet;
 
 /**
  * A document crawled from the web
  */
 public interface WebDocument {
 
-    public Collection<TextFragment> getTextFragments();
+    public SortedSet<TextFragment> getTextFragments();
 
 }
