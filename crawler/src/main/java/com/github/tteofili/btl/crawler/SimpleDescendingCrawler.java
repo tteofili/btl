@@ -1,5 +1,6 @@
 package com.github.tteofili.btl.crawler;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -23,6 +24,13 @@ public class SimpleDescendingCrawler implements Crawler {
         this.webClient = webClient;
     }
 
+    public SimpleDescendingCrawler() {
+        this.webClient = new WebClient(BrowserVersion.CHROME);
+        webClient.getOptions().setThrowExceptionOnScriptError(false);
+        webClient.getOptions().setCssEnabled(false);
+        webClient.getOptions().setGeolocationEnabled(false);
+        webClient.getOptions().setJavaScriptEnabled(false);
+    }
 
     @Override
     public Page getPage(URL url) throws CrawlingException {
