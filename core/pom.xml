@@ -17,5 +17,15 @@
       <version>4.5</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>com.github.tteofili.btl</groupId>
+          <artifactId>btl-crawler</artifactId>
+          <version>0.1-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+          <groupId>com.github.tteofili.btl</groupId>
+          <artifactId>btl-uima</artifactId>
+          <version>0.1-SNAPSHOT</version>
+      </dependency>
   </dependencies>
 </project>

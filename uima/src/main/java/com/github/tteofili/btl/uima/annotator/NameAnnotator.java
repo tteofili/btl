@@ -1,5 +1,9 @@
 package com.github.tteofili.btl.uima.annotator;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.CasAnnotator_ImplBase;
@@ -10,11 +14,6 @@ import org.apache.uima.cas.TypeSystem;
 import org.apache.uima.cas.text.AnnotationFS;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.Level;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Annotates first names using a name dictionary and PoSs
@@ -29,13 +28,23 @@ public class NameAnnotator extends CasAnnotator_ImplBase {
     @Override
     public void initialize(UimaContext aContext) throws ResourceInitializationException {
         super.initialize(aContext);
+        InputStream input = null;
         try {
-            namesList = IOUtils.readLines(new FileInputStream(String.valueOf(aContext
-                    .getConfigParameterValue(NAMESDICT_PATH))));
+            input = getClass().getResourceAsStream(String.valueOf(aContext
+                    .getConfigParameterValue(NAMESDICT_PATH)));
+            namesList = IOUtils.readLines(input);
             Collections.sort(namesList); // sort collection to make binary search possible
         } catch (IOException e) {
             aContext.getLogger().log(Level.SEVERE, "error reading dictionary file");
             throw new ResourceInitializationException(e);
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    // already closed, do nothing
+                }
+            }
         }
     }
 

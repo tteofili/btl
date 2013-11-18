@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
- *
+ * Testcase for {@link SimpleDescendingCrawler}
  */
 public class SimpleDescendingCrawlerTest {
 
@@ -22,7 +22,8 @@ public class SimpleDescendingCrawlerTest {
         webClient.getOptions().setGeolocationEnabled(false);
         webClient.getOptions().setJavaScriptEnabled(false);
         SimpleDescendingCrawler simpleDescendingCrawler = new SimpleDescendingCrawler(webClient);
-        Page page = simpleDescendingCrawler.getPage(new URL("http://www.repubblica.it/politica/la-situazione"));
+        Page page = simpleDescendingCrawler.getPage(new URL("http://www.repubblica.it/politica/la-situazione/" +
+                "2011/11/28/news/arrivano_i_sottosegretari_e_il_premier_prepara_una_nuova_missione_ue-25731599"));
         assertNotNull(page);
         assertNotNull(page.getXmlText());
         assertNotNull(page.getText());
