@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * a page crawled from the web
  */
-public interface Page {
+public interface Page extends Comparable<Page>{
   URI getURL();
   String getText();
   String getXmlText();

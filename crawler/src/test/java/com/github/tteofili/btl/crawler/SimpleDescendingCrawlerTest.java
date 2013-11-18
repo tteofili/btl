@@ -22,12 +22,11 @@ public class SimpleDescendingCrawlerTest {
         webClient.getOptions().setGeolocationEnabled(false);
         webClient.getOptions().setJavaScriptEnabled(false);
         SimpleDescendingCrawler simpleDescendingCrawler = new SimpleDescendingCrawler(webClient);
-        Page page = simpleDescendingCrawler.getPage(new URL("http://www.repubblica.it/politica"));
+        Page page = simpleDescendingCrawler.getPage(new URL("http://www.repubblica.it/politica/la-situazione"));
         assertNotNull(page);
         assertNotNull(page.getXmlText());
         assertNotNull(page.getText());
         webClient.closeAllWindows();
-//    System.err.println(page.getText());
     }
 
     @Test
@@ -38,11 +37,11 @@ public class SimpleDescendingCrawlerTest {
         webClient.getOptions().setGeolocationEnabled(false);
         webClient.getOptions().setJavaScriptEnabled(false);
         SimpleDescendingCrawler simpleDescendingCrawler = new SimpleDescendingCrawler(webClient);
-        Page page = simpleDescendingCrawler.getPage(new URL("http://www.repubblica.it/politica"));
+        Page page = simpleDescendingCrawler.getPage(new URL("http://www.repubblica.it/politica/la-situazione"));
         assertNotNull(page);
         Collection<Page> children = simpleDescendingCrawler.getLinkedPages(page);
         assertNotNull(children);
         assertTrue(children.size() > 0);
-        System.err.println(children.size());
+        webClient.closeAllWindows();
     }
 }

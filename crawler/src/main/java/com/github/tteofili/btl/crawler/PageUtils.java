@@ -32,6 +32,11 @@ public class PageUtils {
             public List<?> getByXpath(String xpathString) {
                 return htmlPage.getByXPath(xpathString);
             }
+
+            @Override
+            public int compareTo(Page other) {
+                return getURL().compareTo(other.getURL());
+            }
         };
     }
 }

@@ -28,16 +28,8 @@ public class SimpleDescendingCrawler implements Crawler {
     public Page getPage(URL url) throws CrawlingException {
         Page page;
         try {
-//      final WebClient webClient = new WebClient(BrowserVersion.CHROME);
             final HtmlPage htmlPage = webClient.getPage(url);
             page = PageUtils.fromWebPage(htmlPage);
-//      htmlPage.getTitleText();
-//      final String pageAsXml = htmlPage.asXml();
-//      pageAsXml.contains("<body class=\"composite\">");
-//      final String pageAsText = htmlPage.asText();
-//      pageAsText.contains("Support for the HTTP and HTTPS protocols");
-
-//      webClient.closeAllWindows();
         } catch (Exception e) {
             throw new CrawlingException(e);
         }
@@ -47,9 +39,6 @@ public class SimpleDescendingCrawler implements Crawler {
     @Override
     public Site getSite(URL url) throws CrawlingException {
         throw new CrawlingException("not yet implemented");
-//        Page rootPage = getPage(url);
-
-//        return null;
     }
 
     @Override
@@ -70,7 +59,7 @@ public class SimpleDescendingCrawler implements Crawler {
                             }
                         } catch (Exception e) {
                             if (log.isErrorEnabled()) {
-                                log.error("cannot retrieve page {}", hrefAttribute);
+                                log.error("cannot retrieve page {}, {}", hrefAttribute, e.getMessage());
                             }
                         }
                     }
