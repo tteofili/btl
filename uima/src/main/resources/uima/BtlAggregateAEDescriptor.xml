@@ -31,8 +31,11 @@
         <delegateAnalysisEngine key="Names">
             <import location="NameAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="Persons">
+        <delegateAnalysisEngine key="OpenNlpPersons">
             <import location="OpenNLPPersons.xml"/>
+        </delegateAnalysisEngine>
+        <delegateAnalysisEngine key="Persons">
+            <import location="PersonAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
@@ -44,6 +47,7 @@
             <fixedFlow>
                 <node>TokenAndSentence</node>
                 <node>Names</node>
+                <node>OpenNlpPersons</node>
                 <node>Persons</node>
             </fixedFlow>
         </flowConstraints>

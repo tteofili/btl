@@ -34,7 +34,9 @@ public class SimpleTest {
             cas.setDocumentText(p.getText());
             ae.process(cas);
             for (AnnotationFS a : cas.getAnnotationIndex()) {
-                System.out.println("a: " + a.getType() + " -> " + a.getCoveredText());
+                if (!a.getType().getName().startsWith("org.apache.uima") && !a.getType().getName().startsWith("uima.tcas")) {
+                    System.out.println("a: " + a.getType() + " -> " + a.getCoveredText());
+                }
             }
             cas.release();
         }
