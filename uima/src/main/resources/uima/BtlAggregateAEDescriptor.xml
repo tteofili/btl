@@ -31,6 +31,9 @@
         <delegateAnalysisEngine key="Names">
             <import location="NameAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
+        <delegateAnalysisEngine key="Persons">
+            <import location="OpenNLPPersons.xml"/>
+        </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
         <name>Aggregate BTL AE - Name, Person, Statement</name>
@@ -41,6 +44,7 @@
             <fixedFlow>
                 <node>TokenAndSentence</node>
                 <node>Names</node>
+                <node>Persons</node>
             </fixedFlow>
         </flowConstraints>
         <capabilities>
