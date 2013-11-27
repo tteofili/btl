@@ -40,10 +40,13 @@
         <delegateAnalysisEngine key="Statements">
             <import location="StatementAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
+        <delegateAnalysisEngine key="Declarations">
+            <import location="DeclarationAnnotatorAEDescriptor.xml"/>
+        </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
-        <name>Aggregate BTL AE - Name, Person, Statement</name>
-        <description>Detects Tokens, Sentences, Names, Persons and Statements</description>
+        <name>Aggregate BTL AE - Name, Person, Statement, Declaration</name>
+        <description>Detects Tokens, Sentences, Names, Persons, Statements and Declarations</description>
         <configurationParameters/>
         <configurationParameterSettings/>
         <flowConstraints>
@@ -53,6 +56,7 @@
                 <node>OpenNlpPersons</node>
                 <node>Persons</node>
                 <node>Statements</node>
+                <node>Declarations</node>
             </fixedFlow>
         </flowConstraints>
         <capabilities>
@@ -61,7 +65,7 @@
                 <outputs>
                 </outputs>
                 <languagesSupported>
-                    <language>en</language>
+                    <language>it</language>
                 </languagesSupported>
             </capability>
             <capability>

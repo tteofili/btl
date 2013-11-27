@@ -8,6 +8,8 @@ import java.util.Collection;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.cas.CAS;
+import org.apache.uima.cas.Feature;
+import org.apache.uima.cas.FeatureStructure;
 import org.apache.uima.cas.text.AnnotationFS;
 import org.apache.uima.resource.ResourceSpecifier;
 import org.apache.uima.util.XMLInputSource;
@@ -34,8 +36,23 @@ public class SimpleTest {
             cas.setDocumentText(p.getText());
             ae.process(cas);
             for (AnnotationFS a : cas.getAnnotationIndex()) {
-                if (!a.getType().getName().startsWith("org.apache.uima") && !a.getType().getName().startsWith("uima.tcas")) {
+                if (a.getType().getName().startsWith("com.github.tteofili.btl")) {
                     System.out.println("a: " + a.getType() + " -> " + a.getCoveredText());
+                    for (Feature f : a.getType().getFeatures()) {
+                        if ("uima.cas.AnnotationBase:sofa".equals(f.getName())) {
+                            // ignore it
+                        } else if (!f.getRange().isPrimitive()) {
+                            FeatureStructure featureValue = a.getFeatureValue(f);
+                            if (featureValue instanceof AnnotationFS) {
+                                System.out.println("a: " + a.getType() + "/" + f.getName() + "-> " + ((AnnotationFS) featureValue).getCoveredText());
+                            } else {
+                                System.out.println("a: " + a.getType() + "/" + f.getName() + "-> " + featureValue);
+                            }
+                        } else {
+                            System.out.println("a: " + a.getType() + "/" + f.getName() + "-> " + a.getFeatureValueAsString(f));
+                        }
+                    }
+
                 }
             }
             cas.release();

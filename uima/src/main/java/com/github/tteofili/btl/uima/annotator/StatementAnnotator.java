@@ -52,14 +52,6 @@ public class StatementAnnotator extends CasAnnotator_ImplBase {
                 this.getContext().getLogger().log(Level.WARNING, "cannot create StatementAnnotation", e);
             }
 
-
-            // for each of them create a DeclarationAnnotation
-
-            // for each declaration look for the person who made that
-
-            // if found then create a StatementAnnotation (w/ author & declaration)
-
-            // if not skip that
         }
     }
 }

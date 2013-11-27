@@ -24,6 +24,7 @@ public class AnnotationUtils {
     protected static final String SENTENCE_ANNOTATION = "org.apache.uima.SentenceAnnotation";
     protected static final String NAME_ANNOTATION = "com.github.tteofili.btl.uima.NameAnnotation";
     protected static final String STATEMENT_ANNOTATION = "com.github.tteofili.btl.uima.StatementAnnotation";
+    protected static final String DECLARATION_ANNOTATION = "com.github.tteofili.btl.uima.DeclarationAnnotation";
     protected static final String PERSON_ANNOTATION = "com.github.tteofili.btl.uima.PersonAnnotation";
     protected static final String OPENNLP_PERSON_ANNOTATION = "opennlp.uima.Person";
 
@@ -164,15 +165,15 @@ public class AnnotationUtils {
     }
 
     /**
-     * get annotations of passed type contained inside the sentece
+     * get annotations of passed type contained inside the sentence
      *
      * @param sentence
      * @param type
      * @return
      */
-    public static List<Annotation> getContainedAnnotations(SentenceAnnotation sentence, int type) throws CASException {
-        List<Annotation> foundAnnotations = new ArrayList<Annotation>();
-        for (Annotation annotation : getAnnotations(type, sentence.getCAS().getJCas())) {
+    public static List<AnnotationFS> getContainedAnnotations(SentenceAnnotation sentence, Type type) throws CASException {
+        List<AnnotationFS> foundAnnotations = new ArrayList<AnnotationFS>();
+        for (AnnotationFS annotation : getAnnotations(type, sentence.getCAS())) {
             if (annotation.getBegin() >= sentence.getBegin() && annotation.getEnd() <= sentence.getEnd()) {
                 foundAnnotations.add(annotation);
             }
