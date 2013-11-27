@@ -87,7 +87,7 @@
                 <inputs/>
                 <outputs/>
                 <languagesSupported>
-                    <language>en</language>
+                    <language>x-unspecified</language>
                 </languagesSupported>
             </capability>
         </capabilities>
