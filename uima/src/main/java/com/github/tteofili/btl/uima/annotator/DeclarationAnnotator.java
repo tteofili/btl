@@ -23,8 +23,7 @@ public class DeclarationAnnotator extends CasAnnotator_ImplBase {
             try {
                 SentenceAnnotation sentence = AnnotationUtils.getSentenceContaining(statement);
                 // look for the person who made that
-                // TODO : currnetly using names, switch to persons
-                List<AnnotationFS> personAnnotations = AnnotationUtils.getContainedAnnotations(sentence, typeSystem.getType(AnnotationUtils.NAME_ANNOTATION));
+                List<AnnotationFS> personAnnotations = AnnotationUtils.getContainedAnnotations(sentence, typeSystem.getType(AnnotationUtils.PERSON_ANNOTATION));
                 // if found then create a declaration annotation (w/ author & statement)
                 if (personAnnotations.size() == 1) {
                     AnnotationFS person = personAnnotations.get(0);

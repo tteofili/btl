@@ -18,17 +18,18 @@ public class DeclarationAnnotatorTest {
     @Test
     public void testTextWithStatementOnSingleSentence() throws Exception {
         String descFilePath = getClass().getResource("/uima/BtlAggregateAEDescriptor.xml").getFile();
-        CAS cas = AnnotatorTester.performTest(descFilePath, "the new major Todd declared : \"I am not corrupted!\" but people is not convinced for some reason", "en");
+        CAS cas = AnnotatorTester.performTest(descFilePath, "Francesco Storace , intervistato qualche settimana prima, " +
+                "dichiarava idignato: \"Non sono corrotto!\" e chiunque dica il contrario è in malafede", "it");
         assertNotNull(cas);
         Type declarationType = cas.getTypeSystem().getType(AnnotationUtils.DECLARATION_ANNOTATION);
         AnnotationIndex<AnnotationFS> annotationIndex = cas.getAnnotationIndex(declarationType);
         assertNotNull(annotationIndex);
         assertEquals(1, annotationIndex.size());
         for (AnnotationFS annotationFS : annotationIndex) {
-            assertEquals("I am not corrupted!", annotationFS.getCoveredText());
+            assertEquals("Non sono corrotto!", annotationFS.getCoveredText());
             FeatureStructure author = annotationFS.getFeatureValue(declarationType.getFeatureByBaseName("author"));
             assertNotNull(author);
-            assertEquals("Todd", ((AnnotationFS) author).getCoveredText());
+            assertEquals("Francesco Storace", ((AnnotationFS) author).getCoveredText());
         }
     }
 
@@ -45,7 +46,7 @@ public class DeclarationAnnotatorTest {
             assertEquals("Io no venduta", annotationFS.getCoveredText());
             FeatureStructure author = annotationFS.getFeatureValue(declarationType.getFeatureByBaseName("author"));
             assertNotNull(author);
-            assertEquals("Paola", ((AnnotationFS) author).getCoveredText());
+            assertEquals("M5S Paola De Pin", ((AnnotationFS) author).getCoveredText());
         }
     }
 
