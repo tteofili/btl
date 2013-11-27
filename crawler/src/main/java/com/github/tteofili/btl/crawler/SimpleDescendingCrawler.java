@@ -70,6 +70,19 @@ public class SimpleDescendingCrawler implements Crawler {
                                 log.error("cannot retrieve page {}, {}", hrefAttribute, e.getMessage());
                             }
                         }
+                    } else if (hrefAttribute.startsWith(page.getURL().getPath())) {
+                        try {
+                            String url = page.getURL().getScheme() + "://" + page.getURL().getHost() + hrefAttribute;
+                            HtmlPage htmlPage = webClient.getPage(url);
+                            children.add(PageUtils.fromWebPage(htmlPage));
+                            if (log.isInfoEnabled()) {
+                                log.info("page {} added", url);
+                            }
+                        } catch (Exception e) {
+                            if (log.isErrorEnabled()) {
+                                log.error("cannot retrieve page {}, {}", hrefAttribute, e.getMessage());
+                            }
+                        }
                     }
                 }
             }

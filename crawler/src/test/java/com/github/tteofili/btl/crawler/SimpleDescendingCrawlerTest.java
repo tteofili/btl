@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Collection;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -27,6 +28,24 @@ public class SimpleDescendingCrawlerTest {
         assertNotNull(page);
         assertNotNull(page.getXmlText());
         assertNotNull(page.getText());
+        webClient.closeAllWindows();
+    }
+
+    @Test
+    public void testTwitterProfileAndDescendantsRetrieve() throws Exception {
+        WebClient webClient = new WebClient(BrowserVersion.CHROME);
+        webClient.getOptions().setThrowExceptionOnScriptError(false);
+        webClient.getOptions().setCssEnabled(false);
+        webClient.getOptions().setGeolocationEnabled(false);
+        webClient.getOptions().setJavaScriptEnabled(false);
+        SimpleDescendingCrawler simpleDescendingCrawler = new SimpleDescendingCrawler(webClient);
+        Page page = simpleDescendingCrawler.getPage(new URL("http://twitter.com/tteofili"));
+        assertNotNull(page);
+        assertNotNull(page.getXmlText());
+        assertNotNull(page.getText());
+        Collection<Page> children = simpleDescendingCrawler.getLinkedPages(page);
+        assertNotNull(children);
+        assertEquals(16, children.size());
         webClient.closeAllWindows();
     }
 
