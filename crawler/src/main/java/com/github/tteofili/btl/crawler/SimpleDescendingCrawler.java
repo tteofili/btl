@@ -7,6 +7,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import java.net.URI;
 import java.net.URL;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
 import org.slf4j.Logger;
@@ -54,16 +55,18 @@ public class SimpleDescendingCrawler implements Crawler {
     public Collection<Page> getLinkedPages(Page page) throws CrawlingException {
         Collection<Page> children = new TreeSet<Page>();
         try {
+            List<String> crawlerURLs = new LinkedList<String>();
             List<HtmlAnchor> anchors = (List<HtmlAnchor>) page.getByXpath("//a");
             for (HtmlAnchor htmlAnchor : anchors) {
                 String hrefAttribute = htmlAnchor.getHrefAttribute();
                 if (hrefAttribute != null) {
                     // only get pages whose URL is "under" the given page
                     URI rootUrl = page.getURL();
-                    if (hrefAttribute.startsWith(rootUrl.toString())) {
+                    if (hrefAttribute.startsWith(rootUrl.toString()) && !crawlerURLs.contains(hrefAttribute)) {
                         try {
                             HtmlPage htmlPage = webClient.getPage(hrefAttribute);
                             children.add(PageUtils.fromWebPage(htmlPage));
+                            crawlerURLs.add(hrefAttribute);
                             if (log.isInfoEnabled()) {
                                 log.info("page {} added", hrefAttribute);
                             }
@@ -75,10 +78,13 @@ public class SimpleDescendingCrawler implements Crawler {
                     } else if (hrefAttribute.startsWith(rootUrl.getPath())) {
                         try {
                             String url = rootUrl.getScheme() + "://" + rootUrl.getHost() + hrefAttribute;
-                            HtmlPage htmlPage = webClient.getPage(url);
-                            children.add(PageUtils.fromWebPage(htmlPage));
-                            if (log.isInfoEnabled()) {
-                                log.info("page {} added", url);
+                            if (!crawlerURLs.contains(url)) {
+                                HtmlPage htmlPage = webClient.getPage(url);
+                                children.add(PageUtils.fromWebPage(htmlPage));
+                                crawlerURLs.add(url);
+                                if (log.isInfoEnabled()) {
+                                    log.info("page {} added", url);
+                                }
                             }
                         } catch (Exception e) {
                             if (log.isErrorEnabled()) {
