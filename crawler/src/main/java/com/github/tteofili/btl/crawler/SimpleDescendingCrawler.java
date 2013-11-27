@@ -4,6 +4,7 @@ import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import java.net.URI;
 import java.net.URL;
 import java.util.Collection;
 import java.util.List;
@@ -58,7 +59,8 @@ public class SimpleDescendingCrawler implements Crawler {
                 String hrefAttribute = htmlAnchor.getHrefAttribute();
                 if (hrefAttribute != null) {
                     // only get pages whose URL is "under" the given page
-                    if (hrefAttribute.startsWith(page.getURL().toString())) {
+                    URI rootUrl = page.getURL();
+                    if (hrefAttribute.startsWith(rootUrl.toString())) {
                         try {
                             HtmlPage htmlPage = webClient.getPage(hrefAttribute);
                             children.add(PageUtils.fromWebPage(htmlPage));
@@ -70,9 +72,9 @@ public class SimpleDescendingCrawler implements Crawler {
                                 log.error("cannot retrieve page {}, {}", hrefAttribute, e.getMessage());
                             }
                         }
-                    } else if (hrefAttribute.startsWith(page.getURL().getPath())) {
+                    } else if (hrefAttribute.startsWith(rootUrl.getPath())) {
                         try {
-                            String url = page.getURL().getScheme() + "://" + page.getURL().getHost() + hrefAttribute;
+                            String url = rootUrl.getScheme() + "://" + rootUrl.getHost() + hrefAttribute;
                             HtmlPage htmlPage = webClient.getPage(url);
                             children.add(PageUtils.fromWebPage(htmlPage));
                             if (log.isInfoEnabled()) {
