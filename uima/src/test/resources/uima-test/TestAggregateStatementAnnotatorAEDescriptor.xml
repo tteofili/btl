@@ -26,32 +26,20 @@
     <primitive>false</primitive>
     <delegateAnalysisEngineSpecifiers>
         <delegateAnalysisEngine key="TokenAndSentence">
-            <import location="HmmTaggerAggregate.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="Names">
-            <import location="NameAnnotatorAEDescriptor.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="OpenNlpPersons">
-            <import location="OpenNLPPersons.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="Persons">
-            <import location="PersonAnnotatorAEDescriptor.xml"/>
+            <import name="HmmTaggerAggregate"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Statements">
-            <import location="StatementAnnotatorAEDescriptor.xml"/>
+            <import location="../../classes/uima/StatementAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
-        <name>Aggregate BTL AE - Name, Person, Statement</name>
-        <description>Detects Tokens, Sentences, Names, Persons and Statements</description>
+        <name>Aggregate Statement Annotator</name>
+        <description>Detects Tokens, Sentences, Statements</description>
         <configurationParameters/>
         <configurationParameterSettings/>
         <flowConstraints>
             <fixedFlow>
                 <node>TokenAndSentence</node>
-                <node>Names</node>
-                <node>OpenNlpPersons</node>
-                <node>Persons</node>
                 <node>Statements</node>
             </fixedFlow>
         </flowConstraints>
