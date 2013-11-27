@@ -7,7 +7,7 @@ import org.apache.uima.cas.Type;
 import org.apache.uima.cas.text.AnnotationFS;
 
 /**
- * Add javadoc here
+ * a person annotator
  */
 public class PersonAnnotator extends CasAnnotator_ImplBase {
 

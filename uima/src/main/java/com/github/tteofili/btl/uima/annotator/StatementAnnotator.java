@@ -9,7 +9,7 @@ import org.apache.uima.cas.text.AnnotationFS;
 import org.apache.uima.util.Level;
 
 /**
- * Add javadoc here
+ * a statement annotator
  */
 public class StatementAnnotator extends CasAnnotator_ImplBase {
 
