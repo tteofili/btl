@@ -13,16 +13,17 @@ public class PersonAnnotator extends CasAnnotator_ImplBase {
 
     @Override
     public void process(CAS cas) throws AnalysisEngineProcessException {
-        // use openNLP person name finder
-        Type openNlpPersonType = cas.getTypeSystem().getType(AnnotationUtils.OPENNLP_PERSON_ANNOTATION);
-        for (AnnotationFS a : AnnotationUtils.getAnnotations(openNlpPersonType, cas)) {
+        // use name annotations
+        Type nameType = cas.getTypeSystem().getType(AnnotationUtils.OPENNLP_PERSON_ANNOTATION);
+        for (AnnotationFS a : AnnotationUtils.getAnnotations(nameType, cas)) {
+
 
 //            try {
 //                SentenceAnnotation sentenceAnnotation = AnnotationUtils.getSentenceContaining(a);
 //                if (sentenceAnnotation) {
-                    AnnotationFS nameAnnotation = cas.createAnnotation(cas.getTypeSystem().
-                            getType(AnnotationUtils.PERSON_ANNOTATION), a.getBegin(), a.getEnd());
-                    cas.addFsToIndexes(nameAnnotation);
+            AnnotationFS nameAnnotation = cas.createAnnotation(cas.getTypeSystem().
+                    getType(AnnotationUtils.PERSON_ANNOTATION), a.getBegin(), a.getEnd());
+            cas.addFsToIndexes(nameAnnotation);
 //                }
 //            } catch (CASException e) {
 //                throw new AnalysisEngineProcessException(e);

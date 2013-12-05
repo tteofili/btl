@@ -32,6 +32,14 @@
                     <name>statement</name>
                     <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
                 </featureDescription>
+                <featureDescription>
+                    <name>sentence</name>
+                    <rangeTypeName>uima.tcas.Annotation</rangeTypeName>
+                </featureDescription>
+                <featureDescription>
+                    <name>url</name>
+                    <rangeTypeName>uima.cas.String</rangeTypeName>
+                </featureDescription>
             </features>
         </typeDescription>
         <typeDescription>

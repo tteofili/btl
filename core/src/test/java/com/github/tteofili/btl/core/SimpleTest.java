@@ -24,7 +24,7 @@ public class SimpleTest {
     @Test
     public void testCrawlingAndIE() throws Exception {
         Crawler crawler = new SimpleDescendingCrawler();
-        Page rootPage = crawler.getPage(new URL("http://www.repubblica.it/politica/la-situazione/"));
+        Page rootPage = crawler.getPage(new URL("http://www.repubblica.it/politica"));
         assertNotNull(rootPage);
         Collection<Page> pages = crawler.getLinkedPages(rootPage);
         assertNotNull(pages);

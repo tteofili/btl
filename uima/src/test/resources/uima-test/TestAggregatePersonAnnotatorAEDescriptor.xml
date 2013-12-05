@@ -26,41 +26,25 @@
     <primitive>false</primitive>
     <delegateAnalysisEngineSpecifiers>
         <delegateAnalysisEngine key="TokenAndSentence">
-            <import location="HmmTaggerAggregate.xml"/>
+            <import name="HmmTaggerAggregate"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Names">
-            <import location="NameAnnotatorAEDescriptor.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="OpenNlpPersons">
-            <import location="OpenNLPPersons.xml"/>
+            <import location="../../classes/uima/OpenNLPPersons.xml"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Persons">
-            <import location="PersonAnnotatorAEDescriptor.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="Statements">
-            <import location="StatementAnnotatorAEDescriptor.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="Declarations">
-            <import location="DeclarationAnnotatorAEDescriptor.xml"/>
-        </delegateAnalysisEngine>
-        <delegateAnalysisEngine key="Index">
-            <import location="LuceneCASConsumer.xml"/>
+            <import location="../../classes/uima/PersonAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
-        <name>Aggregate BTL AE - Name, Person, Statement, Declaration</name>
-        <description>Detects Tokens, Sentences, Names, Persons, Statements and Declarations</description>
+        <name>Aggregate Name Annotator</name>
+        <description>Detects Tokens, Sentences, Names</description>
         <configurationParameters/>
         <configurationParameterSettings/>
         <flowConstraints>
             <fixedFlow>
                 <node>TokenAndSentence</node>
                 <node>Names</node>
-                <node>OpenNlpPersons</node>
                 <node>Persons</node>
-                <node>Statements</node>
-                <node>Declarations</node>
-                <node>Index</node>
             </fixedFlow>
         </flowConstraints>
         <capabilities>
@@ -69,7 +53,7 @@
                 <outputs>
                 </outputs>
                 <languagesSupported>
-                    <language>it</language>
+                    <language>en</language>
                 </languagesSupported>
             </capability>
             <capability>
