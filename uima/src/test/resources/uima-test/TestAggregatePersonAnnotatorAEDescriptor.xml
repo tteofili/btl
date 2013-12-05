@@ -29,6 +29,9 @@
             <import name="HmmTaggerAggregate"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Names">
+            <import location="../../classes/uima/NameAnnotatorAEDescriptor.xml"/>
+        </delegateAnalysisEngine>
+        <delegateAnalysisEngine key="OpenNLP">
             <import location="../../classes/uima/OpenNLPPersons.xml"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Persons">
@@ -44,6 +47,7 @@
             <fixedFlow>
                 <node>TokenAndSentence</node>
                 <node>Names</node>
+                <node>OpenNLP</node>
                 <node>Persons</node>
             </fixedFlow>
         </flowConstraints>

@@ -1,6 +1,8 @@
 package com.github.tteofili.btl.uima.annotator;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import org.apache.uima.SentenceAnnotation;
 import org.apache.uima.TokenAnnotation;
@@ -179,5 +181,25 @@ public class AnnotationUtils {
             }
         }
         return foundAnnotations;
+    }
+
+    public static Collection<AnnotationFS> getAnnotationsContainedIn(AnnotationFS targetAnnotation) {
+        Collection<AnnotationFS> containedAnnotations = new LinkedList<AnnotationFS>();
+        for (AnnotationFS a : targetAnnotation.getCAS().getAnnotationIndex()) {
+            if (a.getBegin() >= targetAnnotation.getBegin() && a.getEnd() <= targetAnnotation.getEnd() && !a.getType().equals(targetAnnotation.getType())) {
+                containedAnnotations.add(a);
+            }
+        }
+        return containedAnnotations;
+    }
+
+    public static Collection<AnnotationFS> getAnnotationsContainedIn(AnnotationFS targetAnnotation, Type type) {
+        Collection<AnnotationFS> containedAnnotations = new LinkedList<AnnotationFS>();
+        for (AnnotationFS a : targetAnnotation.getCAS().getAnnotationIndex()) {
+            if (a.getBegin() >= targetAnnotation.getBegin() && a.getEnd() <= targetAnnotation.getEnd() && type.equals(a.getType())) {
+                containedAnnotations.add(a);
+            }
+        }
+        return containedAnnotations;
     }
 }

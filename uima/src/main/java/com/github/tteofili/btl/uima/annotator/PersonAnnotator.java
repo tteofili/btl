@@ -1,5 +1,6 @@
 package com.github.tteofili.btl.uima.annotator;
 
+import java.util.Collection;
 import org.apache.uima.analysis_component.CasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
@@ -21,9 +22,12 @@ public class PersonAnnotator extends CasAnnotator_ImplBase {
 //            try {
 //                SentenceAnnotation sentenceAnnotation = AnnotationUtils.getSentenceContaining(a);
 //                if (sentenceAnnotation) {
-            AnnotationFS nameAnnotation = cas.createAnnotation(cas.getTypeSystem().
-                    getType(AnnotationUtils.PERSON_ANNOTATION), a.getBegin(), a.getEnd());
-            cas.addFsToIndexes(nameAnnotation);
+            Collection<AnnotationFS> containedNameAnnotations = AnnotationUtils.getAnnotationsContainedIn(a, cas.getTypeSystem().getType(AnnotationUtils.NAME_ANNOTATION));
+            if (containedNameAnnotations.size() > 0) {
+                AnnotationFS nameAnnotation = cas.createAnnotation(cas.getTypeSystem().
+                        getType(AnnotationUtils.PERSON_ANNOTATION), a.getBegin(), a.getEnd());
+                cas.addFsToIndexes(nameAnnotation);
+            }
 //                }
 //            } catch (CASException e) {
 //                throw new AnalysisEngineProcessException(e);
