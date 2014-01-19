@@ -1,11 +1,12 @@
 package com.github.tteofili.btl.uima.annotator;
 
-import java.util.Collection;
 import org.apache.uima.analysis_component.CasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.Type;
 import org.apache.uima.cas.text.AnnotationFS;
+
+import java.util.Collection;
 
 /**
  * a person annotator
