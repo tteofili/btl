@@ -17,7 +17,7 @@
             <artifactId>junit</artifactId>
             <version>4.5</version>
             <scope>test</scope>
-        </dependesncy>
+        </dependency>
     </dependencies>
 
     <build>
