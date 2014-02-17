@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.tteofili.btl</groupId>
-            <artifactId>btl-uima</artifactId>
+            <artifactId>btl-nlp</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

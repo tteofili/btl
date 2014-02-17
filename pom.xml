@@ -9,7 +9,7 @@
 
   <modules>
     <module>core</module>
-    <module>uima</module>
+    <module>nlp</module>
     <module>crawler</module>
     <module>web</module>
   </modules>

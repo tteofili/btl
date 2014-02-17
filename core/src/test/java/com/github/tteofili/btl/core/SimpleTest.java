@@ -36,7 +36,7 @@ public class SimpleTest {
             cas.setDocumentText(p.getText());
             ae.process(cas);
             for (AnnotationFS a : cas.getAnnotationIndex()) {
-                if (a.getType().getName().startsWith("com.github.tteofili.btl")) {
+                if (a.getType().getName().startsWith("com.github.tteofili.btl") || a.getType().getName().startsWith("org.apache.uima.alchemy")) {
                     System.out.println("a: " + a.getType() + " -> " + a.getCoveredText());
                     for (Feature f : a.getType().getFeatures()) {
                         if ("uima.cas.AnnotationBase:sofa".equals(f.getName())) {
