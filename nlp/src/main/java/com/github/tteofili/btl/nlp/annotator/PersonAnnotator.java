@@ -19,7 +19,6 @@ public class PersonAnnotator extends CasAnnotator_ImplBase {
         Type nameType = cas.getTypeSystem().getType(AnnotationUtils.OPENNLP_PERSON_ANNOTATION);
         for (AnnotationFS a : AnnotationUtils.getAnnotations(nameType, cas)) {
 
-
 //            try {
 //                SentenceAnnotation sentenceAnnotation = AnnotationUtils.getSentenceContaining(a);
 //                if (sentenceAnnotation) {

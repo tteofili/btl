@@ -1,10 +1,17 @@
 package com.github.tteofili.btl.core;
 
-import com.github.tteofili.btl.crawler.Crawler;
-import com.github.tteofili.btl.crawler.Page;
-import com.github.tteofili.btl.crawler.SimpleDescendingCrawler;
+import java.io.File;
 import java.net.URL;
 import java.util.Collection;
+
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.MatchAllDocsQuery;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.store.FSDirectory;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.cas.CAS;
@@ -15,12 +22,17 @@ import org.apache.uima.resource.ResourceSpecifier;
 import org.apache.uima.util.XMLInputSource;
 import org.junit.Test;
 
+import com.github.tteofili.btl.crawler.Crawler;
+import com.github.tteofili.btl.crawler.Page;
+import com.github.tteofili.btl.crawler.SimpleDescendingCrawler;
+
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Add javadoc here
+ * IT for IE tasks
  */
-public class SimpleTest {
+public class InformationExtractionIT {
     @Test
     public void testCrawlingAndIE() throws Exception {
         Crawler crawler = new SimpleDescendingCrawler();
@@ -56,6 +68,25 @@ public class SimpleTest {
                 }
             }
             cas.release();
+        }
+
+        FSDirectory directory = FSDirectory.open(new File(getClass().getResource("/").getFile()));
+        IndexReader reader = DirectoryReader.open(directory);
+        IndexSearcher indexSearcher = new IndexSearcher(reader);
+        try {
+            TopDocs topDocs = indexSearcher.search(new MatchAllDocsQuery(), Integer.MAX_VALUE);
+            assertTrue(topDocs.totalHits > 0);
+            for (ScoreDoc scoreDoc : topDocs.scoreDocs) {
+                Document doc = indexSearcher.doc(scoreDoc.doc);
+                String author = doc.get("author");
+                assertNotNull(author);
+                String statement = doc.get("statement");
+                assertNotNull(statement);
+                System.out.println(author + ": \"" + statement + "\"");
+            }
+        } finally {
+            reader.close();
+            directory.close();
         }
     }
 }

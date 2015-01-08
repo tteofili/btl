@@ -43,9 +43,9 @@
         <delegateAnalysisEngine key="Declarations">
             <import location="DeclarationAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
-        <!--<delegateAnalysisEngine key="Index">-->
-            <!--<import location="LuceneCASConsumer.xml"/>-->
-        <!--</delegateAnalysisEngine>-->
+        <delegateAnalysisEngine key="Index">
+            <import location="LuceneCASConsumer.xml"/>
+        </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
         <name>Aggregate BTL AE - Name, Person, Statement, Declaration</name>

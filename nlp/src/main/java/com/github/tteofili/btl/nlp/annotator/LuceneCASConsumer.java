@@ -32,7 +32,8 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
     @Override
     public void initialize(UimaContext context) throws ResourceInitializationException {
         super.initialize(context);
-        String indexPath = getClass().getResource(String.valueOf(context.getConfigParameterValue("indexpath"))).getFile();
+        String indexPathConfigValue = String.valueOf(context.getConfigParameterValue("indexpath"));
+        String indexPath = getClass().getResource(indexPathConfigValue).getFile();
         try {
             directory = FSDirectory.open(new File(indexPath));
             ft = new FieldType();
