@@ -1,1 +1,7 @@
 # Created by .gitignore support plugin (hsz.mobi)
+parent.iml
+nlp/btl-nlp.iml
+crawler/btl-crawler.iml
+core/btl-core.iml
+web/btl-web.iml
+target

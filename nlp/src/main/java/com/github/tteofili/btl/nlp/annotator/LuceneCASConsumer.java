@@ -1,15 +1,17 @@
 package com.github.tteofili.btl.nlp.annotator;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
-import org.apache.lucene.util.Version;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.CasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -28,6 +30,7 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
 
     private FSDirectory directory;
     private FieldType ft;
+    private IndexWriter writer;
 
     @Override
     public void initialize(UimaContext context) throws ResourceInitializationException {
@@ -35,13 +38,13 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
         String indexPathConfigValue = String.valueOf(context.getConfigParameterValue("indexpath"));
         String indexPath = getClass().getResource(indexPathConfigValue).getFile();
         try {
-            directory = FSDirectory.open(new File(indexPath));
-            ft = new FieldType();
-            ft.setIndexed(true);
-            ft.setStored(true);
+            Path path = Paths.get(indexPath);
+            directory = FSDirectory.open(path);
+            ft = new FieldType(TextField.TYPE_STORED);
             ft.setStoreTermVectors(true);
             ft.setStoreTermVectorPositions(true);
             ft.setStoreTermVectorOffsets(true);
+            writer = new IndexWriter(directory, new IndexWriterConfig(new StandardAnalyzer()));
         } catch (IOException e) {
             throw new ResourceInitializationException(e);
         }
@@ -50,9 +53,8 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
 
     @Override
     public void process(CAS cas) throws AnalysisEngineProcessException {
-        IndexWriter writer = null;
         try {
-            writer = new IndexWriter(directory, new IndexWriterConfig(Version.LUCENE_46, new StandardAnalyzer(Version.LUCENE_46)));
+
             TypeSystem typeSystem = cas.getTypeSystem();
             Type declarationType = typeSystem.getType(AnnotationUtils.DECLARATION_ANNOTATION);
             for (AnnotationFS declaration : cas.getAnnotationIndex(typeSystem.getType(AnnotationUtils.DECLARATION_ANNOTATION))) {
@@ -82,6 +84,11 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
     @Override
     public void destroy() {
         super.destroy();
+        try {
+            writer.close();
+        } catch (IOException e) {
+            // do nthing
+        }
         directory.close();
     }
 }
