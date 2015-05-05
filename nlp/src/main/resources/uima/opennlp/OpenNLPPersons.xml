@@ -78,7 +78,7 @@
 
         <typeSystemDescription>
             <imports>
-                <import location="opennlp-typesystem.xml"/>
+                <import location="TypeSystem.xml"/>
             </imports>
         </typeSystemDescription>
 
@@ -105,7 +105,7 @@
             <externalResource>
                 <name>PersonModel</name>
                 <fileResourceSpecifier>
-                    <fileUrl>file:uima/es-ner-person.bin</fileUrl>
+                    <fileUrl>file:uima/opennlp/models/es-ner-person.bin</fileUrl>
                 </fileResourceSpecifier>
                 <implementationName>opennlp.uima.namefind.TokenNameFinderModelResourceImpl</implementationName>
             </externalResource>

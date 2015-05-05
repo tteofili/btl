@@ -54,7 +54,13 @@ public class DeclarationAnnotatorTest {
 //    @Test
 //    public void testTextWithStatementOnMultipleSentences() throws Exception {
 //        String descFilePath = getClass().getResource("/uima/BtlAggregateAEDescriptor.xml").getFile();
-//        CAS cas = AnnotatorTester.performTest(descFilePath, "Ma adesso, a perorare la causa del boss di Corleone, il cui avvocato si è visto respingere il ricorso presentato a Strasburgo, è addirittura l'Unione delle Camere Penali, per la quale è \"inaccettabile\" che Provenzano, \"ormai ridotto ad uno stato quasi vegetativo\", sia ancora al 41 bis. L'associazione dei penalisti chiede l'intervento \"immediato\" dei magistrati competenti, del Dap, e del Ministro della Giustizia, \"se veramente si vuole dimostrare di aver voltato pagina rispetto ai diritti dei detenuti, specialmente quelli in condizioni di salute estreme: senza distinzioni, senza discriminazioni, senza privilegi\".", "it");
+//        CAS cas = AnnotatorTester.performTest(descFilePath, "Ma adesso, a perorare la causa del boss di Corleone, " +
+//                "il cui avvocato si è visto respingere il ricorso presentato a Strasburgo, è addirittura l'Unione delle " +
+//                "Camere Penali, per la quale è \"inaccettabile\" che Provenzano, \"ormai ridotto ad uno stato quasi " +
+//                "vegetativo\", sia ancora al 41 bis. L'associazione dei penalisti chiede l'intervento \"immediato\" " +
+//                "dei magistrati competenti, del Dap, e del Ministro della Giustizia, \"se veramente si vuole dimostrare " +
+//                "di aver voltato pagina rispetto ai diritti dei detenuti, specialmente quelli in condizioni di salute " +
+//                "estreme: senza distinzioni, senza discriminazioni, senza privilegi\".", "it");
 //        assertNotNull(cas);
 //        AnnotationIndex<AnnotationFS> annotationIndex = cas.getAnnotationIndex(cas.getTypeSystem().getType(AnnotationUtils.DECLARATION_ANNOTATION));
 //        assertNotNull(annotationIndex);

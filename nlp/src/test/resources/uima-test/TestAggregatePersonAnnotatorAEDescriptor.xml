@@ -32,7 +32,7 @@
             <import location="../../classes/uima/NameAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="OpenNLP">
-            <import location="../../classes/uima/OpenNLPPersons.xml"/>
+            <import location="../../classes/uima/opennlp/OpenNLPPersons.xml"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Persons">
             <import location="../../classes/uima/PersonAnnotatorAEDescriptor.xml"/>

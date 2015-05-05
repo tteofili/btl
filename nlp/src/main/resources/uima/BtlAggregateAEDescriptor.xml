@@ -32,7 +32,7 @@
             <import location="NameAnnotatorAEDescriptor.xml"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="OpenNlpPersons">
-            <import location="OpenNLPPersons.xml"/>
+            <import location="opennlp/OpenNLPPersons.xml"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Persons">
             <import location="PersonAnnotatorAEDescriptor.xml"/>

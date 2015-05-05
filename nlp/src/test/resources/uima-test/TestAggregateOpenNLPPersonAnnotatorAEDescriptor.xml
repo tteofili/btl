@@ -29,7 +29,7 @@
             <import name="HmmTaggerAggregate"/>
         </delegateAnalysisEngine>
         <delegateAnalysisEngine key="Persons">
-            <import location="../../classes/uima/OpenNLPPersons.xml"/>
+            <import location="../../classes/uima/opennlp/OpenNLPPersons.xml"/>
         </delegateAnalysisEngine>
     </delegateAnalysisEngineSpecifiers>
     <analysisEngineMetaData>
