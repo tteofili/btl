@@ -54,7 +54,6 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
     @Override
     public void process(CAS cas) throws AnalysisEngineProcessException {
         try {
-
             TypeSystem typeSystem = cas.getTypeSystem();
             Type declarationType = typeSystem.getType(AnnotationUtils.DECLARATION_ANNOTATION);
             for (AnnotationFS declaration : cas.getAnnotationIndex(typeSystem.getType(AnnotationUtils.DECLARATION_ANNOTATION))) {
@@ -70,14 +69,6 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
             }
         } catch (IOException e) {
             throw new AnalysisEngineProcessException(e);
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    // do nothing
-                }
-            }
         }
     }
 
@@ -85,9 +76,10 @@ public class LuceneCASConsumer extends CasAnnotator_ImplBase {
     public void destroy() {
         super.destroy();
         try {
+            writer.commit();
             writer.close();
         } catch (IOException e) {
-            // do nthing
+            // do nothing
         }
         directory.close();
     }

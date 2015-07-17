@@ -2,6 +2,7 @@ package com.github.tteofili.btl.core;
 
 import java.io.File;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 import org.apache.lucene.document.Document;
@@ -70,7 +71,7 @@ public class InformationExtractionIT {
             cas.release();
         }
 
-        FSDirectory directory = FSDirectory.open(new File(getClass().getResource("/").getFile()));
+        FSDirectory directory = FSDirectory.open(Paths.get(getClass().getResource("/").getFile()));
         IndexReader reader = DirectoryReader.open(directory);
         IndexSearcher indexSearcher = new IndexSearcher(reader);
         try {
